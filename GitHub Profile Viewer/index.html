@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+    <button onclick="toggleTheme()" id="theme-toggle">Dark/Light</button>
+    
+    <div class="container">
+        <div class="card">
+            <div class="search">
+                <input type="text" id="username" placeholder="Enter GitHub username" spellcheck="false">
+                <button onclick="fetchGitHubProfile()" id="search-btn">
+                    Search
+                </button>
+            </div>
+
+            <div id="loading-spinner" class="loading-spinner"></div>
+
+            <div id="error" class="error">
+                <p>User not found. Please try again.</p>
+            </div>
+
+            <div id="profile" class="profile">
+                <img id="avatar" src="" alt="User Avatar" class="avatar">
+                <h1 id="name"></h1>
+                <p id="bio"></p>
+                <p><strong>Location: </strong><span id="location"></span></p>
+                <p><strong>Followers: </strong><span id="followers"></span></p>
+                <p><strong>Following: </strong><span id="following"></span></p>
+                <p><strong>Public Repos: </strong><span id="repos"></span></p>
+                <a id="website" href="" target="_blank">Website</a>
+
+                <div id="social-links">
+                    <a href="" target="_blank" id="github-link">GitHub</a>
+                    <a href="" target="_blank" id="twitter-link">Twitter</a>
+                </div>
+
+                <h3>Recent Repositories</h3>
+                <div id="repos-list" class="repos-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

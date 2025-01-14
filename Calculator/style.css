@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    min-height: 100vh;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calc {
+    padding: 25px;
+    border-radius: 30px;
+    background: #2d2d2d;
+    box-shadow: 20px 20px 60px #1a1a1a,
+                -20px -20px 60px #404040;
+}
+
+#input {
+    width: 100%;
+    max-width: 400px;
+    height: 100px;
+    border: none;
+    background: #1a1a1a;
+    border-radius: 15px;
+    text-align: right;
+    padding: 0 20px;
+    margin: 10px 0 20px 0;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    /* New properties for text handling */
+    font-size: clamp(20px, 8vw, 48px); /* Responsive font size */
+    white-space: nowrap; /* Prevent line breaks */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Show ... when text overflows */
+    direction: rtl; /* Right-to-left text direction */
+    unicode-bidi: plaintext; /* Maintains number order */
+}
+
+#input:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+button {
+    border: none;
+    margin: 8px;
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    cursor: pointer;
+    background: #2d2d2d;
+    color: #ffffff;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 5px 5px 10px #1a1a1a,
+                -5px -5px 10px #404040;
+}
+
+button:hover {
+    background: linear-gradient(145deg, #2d2d2d, #353535);
+    transform: translateY(-2px);
+}
+
+.new {
+    background: #00b4d8;
+    color: #ffffff;
+    box-shadow: inset 5px 5px 10px #0096b4,
+                inset -5px -5px 10px #00d2fc;
+}
+
+.new:hover {
+    background: linear-gradient(145deg, #00b4d8, #00c2e6);
+}
+
+button.operator {
+    background: #ff6b6b;
+    color: #ffffff;
+}
+
+button.operator:hover {
+    background: linear-gradient(145deg, #ff6b6b, #ff8585);
+}
+
+button.number {
+    background: #2d2d2d;
+    color: #ffffff;
+}
+
+button.equals {
+    background: #4cd964;
+    color: #ffffff;
+}
+
+button.equals:hover {
+    background: linear-gradient(145deg, #4cd964, #5ce974);
+}

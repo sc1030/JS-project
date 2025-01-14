@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Channel Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <h1>YouTube Channel Viewer</h1>
+
+        <div class="search-container">
+            <input type="text" id="channelName" placeholder="Enter channel ID or username" />
+            <button id="searchButton">Search</button>
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;">
+            <p>Channel not found! Please check the channel ID or username.</p>
+        </div>
+
+        <div id="channelInfo" class="channel-info" style="display: none;">
+            <img id="channelThumbnail" src="" alt="Channel Thumbnail" />
+            <h2 id="channelTitle"></h2>
+            <p id="channelDescription"></p>
+            <div class="channel-details">
+                <p><strong>Subscribers:</strong> <span id="channelSubscribers"></span></p>
+                <p><strong>Views:</strong> <span id="channelViews"></span></p>
+                <p><strong>Videos:</strong> <span id="channelVideos"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickSign - Signature App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>QuickSign</h1>
+        <p class="instructions">Draw your signature below using your mouse or touch screen</p>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="penColor">Color:</label>
+                <input type="color" id="penColor" class="color-picker" value="#000000">
+            </div>
+            <div class="control-group">
+                <label for="penThickness">Thickness:</label>
+                <input type="range" id="penThickness" class="thickness-slider" min="1" max="10" value="2">
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="signatureCanvas"></canvas>
+        </div>
+
+        <div class="button-group">
+            <button class="undo-btn" onclick="undo()" disabled>Undo</button>
+            <button class="redo-btn" onclick="redo()" disabled>Redo</button>
+            <button class="clear-btn" onclick="clearCanvas()">Clear</button>
+            <button class="save-btn" onclick="saveSignature()">Save Signature</button>
+            <button class="download-btn" onclick="downloadSignature()">Download</button>
+        </div>
+
+        <img id="savedSignature" alt="Saved signature">
+    </div>
+    <script src="script.js"></script>
+
+  
+</body>
+</html>

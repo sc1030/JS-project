@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-info {
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        button {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #5a6fd1;
+        }
+
+        .message {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .error {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .hint {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .stats {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        <div class="game-info">
+            Guess a number between 1 and 100
+        </div>
+        <input type="number" id="guessInput" placeholder="Enter your guess">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <div id="message" class="message" style="display: none;"></div>
+        <div class="stats">
+            <p>Attempts: <span id="attempts">0</span></p>
+            <p>Best Score: <span id="bestScore">-</span></p>
+        </div>
+    </div>
+
+    <script>
+        let targetNumber = generateRandomNumber();
+        let attempts = 0;
+        let bestScore = localStorage.getItem('bestScore') || '-';
+        
+        updateBestScore();
+
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 100) + 1;
+        }
+
+        function checkGuess() {
+            const guessInput = document.getElementById('guessInput');
+            const messageDiv = document.getElementById('message');
+            const guess = parseInt(guessInput.value);
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                showMessage('Please enter a valid number between 1 and 100', 'error');
+                return;
+            }
+
+            attempts++;
+            updateAttempts();
+
+            if (guess === targetNumber) {
+                showMessage('Congratulations! You got it right!', 'success');
+                updateBestScore();
+                setTimeout(resetGame, 3000);
+            } else if (guess < targetNumber) {
+                showMessage('Too low! Try a higher number', 'hint');
+            } else {
+                showMessage('Too high! Try a lower number', 'hint');
+            }
+
+            guessInput.value = '';
+            guessInput.focus();
+        }
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.style.display = 'block';
+            messageDiv.className = `message ${type}`;
+        }
+
+        function updateAttempts() {
+            document.getElementById('attempts').textContent = attempts;
+        }
+
+        function updateBestScore() {
+            document.getElementById('bestScore').textContent = bestScore;
+            if (attempts > 0 && (bestScore === '-' || attempts < parseInt(bestScore))) {
+                bestScore = attempts;
+                localStorage.setItem('bestScore', bestScore);
+                document.getElementById('bestScore').textContent = bestScore;
+            }
+        }
+
+        function resetGame() {
+            targetNumber = generateRandomNumber();
+            attempts = 0;
+            updateAttempts();
+            showMessage('New game started! Good luck!', 'hint');
+            setTimeout(() => {
+                document.getElementById('message').style.display = 'none';
+            }, 2000);
+        }
+
+        // Handle Enter key press
+        document.getElementById('guessInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                checkGuess();
+            }
+        });
+    </script>
+</body>
+</html>
