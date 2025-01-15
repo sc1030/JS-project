@@ -1,6 +1,6 @@
 document.getElementById('searchButton').addEventListener('click', function () {
     const channelName = document.getElementById('channelName').value;
-    const apiKey = 'AIzaSyBEFpGGZiqW8unW9cTfGxpm7-Sn9Ffy0UE';  // Replace with your actual YouTube API key
+    const apiKey = '';  // Replace with your actual YouTube API key
     
     // Make sure the input is not empty
     if (!channelName) {
